@@ -24,12 +24,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         Intent intent = getIntent();
         CharacterSheet ch = (CharacterSheet) intent.getSerializableExtra("CharacterSheet");
 
