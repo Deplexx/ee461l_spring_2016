@@ -75,7 +75,6 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
 
         // add listener
         mTransfer.addListener(this);
-        mTransfer.addListener(this);
 
 
         mDevicesList = new ArrayList<>();
@@ -250,7 +249,7 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
         config.wps.setup = WpsInfo.PBC;
         config.groupOwnerIntent = 0;
 
-        mManager.connect(mChannel, config, this);;
+        mManager.connect(mChannel, config, this);
     }
 
 
@@ -311,7 +310,7 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
                 // Broadcast intent action indicating that the state of Wi-Fi p2p connectivity
                 // has changed.
                 Log.e(TAG, "P2P CONNECTION CHANGED");
-                NetworkInfo networkInfo = (NetworkInfo) intent.getParcelableExtra(
+                NetworkInfo networkInfo = intent.getParcelableExtra(
                         WifiP2pManager.EXTRA_NETWORK_INFO);
 
                 if(networkInfo.isConnected()) {
@@ -379,7 +378,10 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mReciver);
+        if (mReciver != null) {
+            unregisterReceiver(mReciver);
+            mReciver = null;
+        }
     }
 
 
