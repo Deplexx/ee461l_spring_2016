@@ -27,7 +27,7 @@ public abstract class StatModCmd implements Command{
             return cs;
         }
         CharacterSheet ret = new CharacterSheet(cs);
-        ExecuteMod(cs);
+        ExecuteMod(ret);
         return ret;
     }
 
