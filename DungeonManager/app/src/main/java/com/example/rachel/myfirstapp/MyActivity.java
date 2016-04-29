@@ -47,10 +47,6 @@ public class MyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        Boolean DM = intent.getBooleanExtra("DM", false);
-        Boolean player = intent.getBooleanExtra("Player ", false);
-
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
@@ -58,6 +54,7 @@ public class MyActivity extends AppCompatActivity {
         addDrawerItems();
         setupDrawer();
 
+        //adds the action bar for navigation in the right hand corner
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
