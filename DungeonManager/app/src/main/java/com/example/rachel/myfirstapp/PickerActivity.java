@@ -1,13 +1,18 @@
 package com.example.rachel.myfirstapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.content.Intent;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.wifidirect.milan.wifidirect.activities.MainActivity;
+
+import org.w3c.dom.Text;
 
 
 public class PickerActivity extends AppCompatActivity {
@@ -27,6 +32,7 @@ public class PickerActivity extends AppCompatActivity {
             }
         });
 
+
         final Button Pbutton = (Button) findViewById(R.id.buttonPlayer);
         assert Pbutton != null;
         Pbutton.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +40,6 @@ public class PickerActivity extends AppCompatActivity {
                 PlayerChoice(v);
             }
         });
-
     }
 
     public void DMChoice(View view){

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -40,16 +41,17 @@ import java.util.List;
 
 /**
  * Created by milan on 25.11.15..
+ * Modified by Nico on 4.29.16..
  */
 public class DevicesList extends Fragment implements MessageListener{
     private static final String TAG = "DeviceList";
+    private String title;
     ListView mListView;
     RelativeLayout mRelativeLayoutEmpty;
     ProgressBar mProgressbar;
     private boolean isWiFiEnable;
     private DeviceAdapter mAdapter;
     private List<WifiP2pDevice> mDevicesList = new ArrayList<>();
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,23 +63,31 @@ public class DevicesList extends Fragment implements MessageListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container
             , Bundle savedInstanceState) {
-        // inflate fragment
-        View view = inflater.inflate(R.layout.fragment_deviceslist, null);
-        // action bar
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("");
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Select Player Characters");
+        return inflater.inflate(R.layout.fragment_deviceslist, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActivity().getActionBar().setSubtitle("");
+            getActivity().getActionBar().setTitle(title);
+        }
 
         //initialize views from the deviceslist fragment
-        mListView = (ListView) view.findViewById(R.id.deviceslist_listview);
-        mRelativeLayoutEmpty = (RelativeLayout) view.findViewById(R.id.deviceslist_emptyrelative);
-        mProgressbar = (ProgressBar) view.findViewById(R.id.deviceslist_progressbar);
+        if(getView() != null) {
+            mListView = (ListView) getView().findViewById(R.id.deviceslist_listview);
+            mRelativeLayoutEmpty = (RelativeLayout) getView().findViewById(R.id.deviceslist_emptyrelative);
+            mProgressbar = (ProgressBar) getView().findViewById(R.id.deviceslist_progressbar);
+        }
 
         // register otto
         WifiDirectApplication.getBus().register(this);
 
         // listview array adapter
-         mAdapter = new DeviceAdapter(getActivity(), mDevicesList);
+        mAdapter = new DeviceAdapter(getActivity(), mDevicesList);
         mListView.setAdapter(mAdapter);
 
         // set listview item click listener
@@ -95,10 +105,7 @@ public class DevicesList extends Fragment implements MessageListener{
 
         mDevicesList.add(device);*/
 
-        return view;
     }
-
-
 
     @Override
     public void onMessageReceived(String response) {
@@ -109,6 +116,10 @@ public class DevicesList extends Fragment implements MessageListener{
     @Override
     public void onConnected(boolean isConnected) {
         Toast.makeText(getActivity(), "CONNECTED!", Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isWiFiEnable() {
+        return isWiFiEnable;
     }
 
 
