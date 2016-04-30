@@ -12,9 +12,9 @@ import com.wifidirect.milan.wifidirect.fragments.DevicesList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class DMactivityFragment extends Fragment {
+public class DMFragment extends Fragment {
     Fragment devicesList;
-    public DMactivityFragment() {}
+    public DMFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater,
