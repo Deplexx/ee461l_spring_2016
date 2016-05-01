@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:background="#eaeaea">
+    android:orientation="vertical"
+    android:background="#cec1c2">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/DMtitle"
+        android:text="@string/Title"
+        android:textColor="#f3f3f7"
+        android:textSize="25sp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:typeface="serif"
+        android:fontFamily="sans-serif-thin"
+        android:layout_height="30dp"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text=":("
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:text="@string/button_send"
+        android:onClick="submitFields"
+        android:id="@+id/DMbutton"
+        android:layout_gravity="center_horizontal" />
 
-</RelativeLayout>
+
+    <EditText
+        android:id="@+id/DMedit_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_message" />
+
+    <EditText
+        android:id="@+id/DMname_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_message" />
+
+    <EditText
+        android:id="@+id/DMtype_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/type_message" />
+
+    <EditText
+        android:id="@+id/DMclass_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/class_message" />
+
+
+</LinearLayout>
