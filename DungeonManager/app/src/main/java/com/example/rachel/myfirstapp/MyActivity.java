@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import dice.*;
+
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -165,29 +167,60 @@ public class MyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MyActivity.this, DisplayMessageActivity.class);
-                        EditText editText = (EditText) findViewById(R.id.edit_message);
+                        //EditText editText = (EditText) findViewById(R.id.edit_message);
                         EditText nameText = (EditText) findViewById(R.id.name_message);
                         EditText typeText = (EditText) findViewById(R.id.type_message);
                         EditText classText = (EditText) findViewById(R.id.class_message);
+                        EditText levelText = (EditText) findViewById(R.id.level_field);
+                        EditText hpText = (EditText) findViewById(R.id.hp_field);
+                        EditText acText = (EditText) findViewById(R.id.ac_field);
+                        EditText spdText = (EditText) findViewById(R.id.spd_field);
+                        EditText initText = (EditText) findViewById(R.id.init_field);
+                        EditText strText = (EditText) findViewById(R.id.str_field);
+                        EditText dexText = (EditText) findViewById(R.id.dex_field);
+                        EditText conText = (EditText) findViewById(R.id.con_field);
+                        EditText intText = (EditText) findViewById(R.id.int_field);
+                        EditText wisText = (EditText) findViewById(R.id.wis_field);
+                        EditText chaText = (EditText) findViewById(R.id.cha_field);
 
-                        intent.putExtra("CharacterSheet", chac);
-                        String message = editText.getText().toString();
+                        //String message = editText.getText().toString();
                         String name_message = nameText.getText().toString();
                         String type_message = typeText.getText().toString();
                         String class_message = classText.getText().toString();
+                        int levelNum = Integer.getInteger(levelText.getText().toString());
+                        int hpNum = Integer.getInteger(hpText.getText().toString());
+                        int acNum = Integer.getInteger(acText.getText().toString());
+                        int spdNum = Integer.getInteger(spdText.getText().toString());
+                        int initNum = Integer.getInteger(initText.getText().toString());
+                        int strNum = Integer.getInteger(strText.getText().toString());
+                        int dexNum = Integer.getInteger(dexText.getText().toString());
+                        int conNum = Integer.getInteger(conText.getText().toString());
+                        int intNum = Integer.getInteger(intText.getText().toString());
+                        int wisNum = Integer.getInteger(wisText.getText().toString());
+                        int chaNum = Integer.getInteger(chaText.getText().toString());
 
                         chac.cclass = class_message;
                         chac.name = name_message;
                         chac.race = type_message;
-
+                        chac.level = levelNum;
+                        chac.hp = hpNum;
+                        chac.ac = acNum;
+                        chac.spd = spdNum;
+                        chac.init = initNum;
+                        chac.str = strNum;
+                        chac.dex = dexNum;
+                        chac.con = conNum;
+                        chac.inl = intNum;
+                        chac.wis = wisNum;
+                        chac.cha = chaNum;
                         SharedPreferences settings = getSharedPreferences(CharacterSheet.getPrefsName(0), 0);
                         chac.saveSheet(settings);
 
-                        intent.putExtra(EXTRA_MESSAGE, message);
+                        //intent.putExtra(EXTRA_MESSAGE, message);
                         intent.putExtra("name", name_message);
                         intent.putExtra("type", type_message);
                         intent.putExtra("class", class_message);
-
+                        intent.putExtra("CharacterSheet", chac);
                         startActivity(intent);
 
                     }
@@ -243,5 +276,36 @@ public class MyActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    public void autoStats(View view) {
+        EditText levelText = (EditText) findViewById(R.id.level_field);
+        EditText hpText = (EditText) findViewById(R.id.hp_field);
+        EditText acText = (EditText) findViewById(R.id.ac_field);
+        EditText spdText = (EditText) findViewById(R.id.spd_field);
+        EditText initText = (EditText) findViewById(R.id.init_field);
+        EditText strText = (EditText) findViewById(R.id.str_field);
+        EditText dexText = (EditText) findViewById(R.id.dex_field);
+        EditText conText = (EditText) findViewById(R.id.con_field);
+        EditText intText = (EditText) findViewById(R.id.int_field);
+        EditText wisText = (EditText) findViewById(R.id.wis_field);
+        EditText chaText = (EditText) findViewById(R.id.cha_field);
+        int Level = Die.d12.roll();
+        int hp = 0;
+        for(int i = 0; i < Level; i++){
+            hp += Die.d8.roll();
+        }
+        levelText.setText(String.valueOf(Level));
+        hpText.setText(String.valueOf(hp));
+        acText.setText(String.valueOf(Die.d6.roll() + 3));
+        spdText.setText(String.valueOf(30));
+        initText.setText(String.valueOf(Die.d6.roll()));
+
+        strText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
+        dexText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
+        conText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
+        intText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
+        wisText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
+        chaText.setText(String.valueOf((Die.d6.roll() + Die.d6.roll() + Die.d6.roll())));
     }
 }

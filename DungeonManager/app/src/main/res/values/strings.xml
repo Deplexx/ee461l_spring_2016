@@ -30,6 +30,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="enter_con">Enter CON</string>
+    <string name="enter_dex">Enter DEX</string>
+    <string name="enter_str">Enter STR</string>
+    <string name="enter_int">Enter INT</string>
+    <string name="enter_wis">Enter WIS</string>
+    <string name="enter_cha">Enter CHA</string>
+    <string name="enter_spd">Enter SPD</string>
+    <string name="enter_ac">Enter AC</string>
+    <string name="enter_hp">Enter HP</string>
+    <string name="enter_level">Enter Level</string>
+    <string name="random_stats">Random Stats</string>
 
 </resources>
