@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentManager;
@@ -12,12 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.wifidirect.milan.wifidirect.R;
 import com.wifidirect.milan.wifidirect.fragments.DevicesList;
 import com.wifidirect.milan.wifidirect.services.WifiDirectService;
 
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
+    public boolean isDM() {
+        return isDM;
+    }
+
+    public boolean isPlayer() {
+        return isPlayer;
+    }
+
+    private boolean isDM;
+    private boolean isPlayer;
     public static WifiDirectService mService;
     public static boolean isBind;
     public Toolbar mToolbar;
@@ -31,29 +43,25 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        // start
+        bindAndStartService();
+
         if(savedInstanceState == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.container, new DevicesList()).commit();
         }
-
-        // start
-        startAndBindService();
-
     }
 
-
     /** Start and bind service. */
-    public void startAndBindService() {
+    public void bindAndStartService() {
         Intent intent = new Intent(this, WifiDirectService.class);
         startService(intent);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
     }
 
     /** Stop and unbind service. */
-    public void stopAndUnbindService() {
-        Intent intent = new Intent(this, WifiDirectService.class);
-        stopService(intent);
+    public void unbindService() {
         unbindService(this);
     }
 
@@ -63,14 +71,21 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     public void onServiceConnected(ComponentName name, IBinder service) {
         mService = ((WifiDirectService.ServiceBinder) service).getService();
         isBind = true;
+        if(getIntent().getBooleanExtra("DM", true)) {
+            createGroup();
+            isDM = true;
+            isPlayer = false;
+        }
+        else {
+            isDM = false;
+            isPlayer = true;
+        }
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
         isBind = false;
     }
-
-
 
     // main menu
     @Override
@@ -95,12 +110,38 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return super.onOptionsItemSelected(item);
     }
 
+    //create a group if the player is the dm
+    private void createGroup() {
+        mService.mManager.createGroup(mService.mChannel, new WifiP2pManager.ActionListener() {
+
+            @Override
+            public void onSuccess() {
+                Toast.makeText(MainActivity.this, "Group Created", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int reason) {
+                Toast.makeText(MainActivity.this, "Group failed to Create", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // stop service
-        stopAndUnbindService();
-    }
 
+        mService.mManager.removeGroup(mService.mChannel, new WifiP2pManager.ActionListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(int reason) {
+
+            }
+        });
+        // unbind service
+        unbindService();
+    }
 }

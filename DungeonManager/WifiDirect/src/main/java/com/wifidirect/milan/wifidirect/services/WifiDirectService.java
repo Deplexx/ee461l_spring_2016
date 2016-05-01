@@ -75,7 +75,6 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
 
         // add listener
         mTransfer.addListener(this);
-        mTransfer.addListener(this);
 
 
         mDevicesList = new ArrayList<>();
@@ -250,7 +249,7 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
         config.wps.setup = WpsInfo.PBC;
         config.groupOwnerIntent = 0;
 
-        mManager.connect(mChannel, config, this);;
+        mManager.connect(mChannel, config, this);
     }
 
 
@@ -381,7 +380,4 @@ public class WifiDirectService extends Service implements WifiP2pManager.Channel
         super.onDestroy();
         unregisterReceiver(mReciver);
     }
-
-
-
 }

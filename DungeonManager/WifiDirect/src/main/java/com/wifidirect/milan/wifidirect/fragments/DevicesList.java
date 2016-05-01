@@ -5,14 +5,12 @@ import android.content.DialogInterface;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -73,7 +71,7 @@ public class DevicesList extends Fragment implements MessageListener{
         if(getActivity().getActionBar() != null) {
             getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
             getActivity().getActionBar().setSubtitle("");
-            getActivity().getActionBar().setTitle(title);
+            getActivity().getActionBar().setTitle("Dungeon Manager");
         }
 
         //initialize views from the deviceslist fragment
@@ -131,22 +129,6 @@ public class DevicesList extends Fragment implements MessageListener{
         }
     }
 
-
-    /** Floating button on click listener. */
-    private class FloatOnClickListener implements View.OnClickListener{
-        @Override
-        public void onClick(View v) {
-            Snackbar.make(v, "Searching", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
-            if(MainActivity.mService != null) {
-                MainActivity.mService.refreshList();
-            }
-        }
-    }
-
-
-
     @Subscribe
     public void answerAvailable(Events.WifiState event) {
         if(MainActivity.mService == null) {
@@ -158,7 +140,21 @@ public class DevicesList extends Fragment implements MessageListener{
             case WiFiDirectConstants.BROADCAST_ACTION_PEERS_LIST:
                 // clear list of devices and add new list
                 mDevicesList.clear();
-                mDevicesList.addAll(MainActivity.mService.mDevicesList);
+                //if the user is the DM, then only clients should be added to the devices list
+                if(((MainActivity) getActivity()).isDM()) {
+                    for (WifiP2pDevice p : MainActivity.mService.mDevicesList) {
+                        if (!p.isGroupOwner()) {
+                            mDevicesList.add(p);
+                        }
+                    }
+                }
+                else {
+                    for (WifiP2pDevice p : MainActivity.mService.mDevicesList) {
+                        if (p.isGroupOwner()) {
+                            mDevicesList.add(p);
+                        }
+                    }
+                }
 
                 // show or hide RelativeLayout
                 if(mDevicesList.size() > 0) {
