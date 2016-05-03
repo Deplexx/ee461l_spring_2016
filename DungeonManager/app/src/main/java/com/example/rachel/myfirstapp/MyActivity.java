@@ -67,9 +67,33 @@ public class MyActivity extends AppCompatActivity {
         EditText typeText = (EditText) findViewById(R.id.type_message);
         EditText classText = (EditText) findViewById(R.id.class_message);
 
+        EditText levelText = (EditText) findViewById(R.id.level_field);
+        EditText hpText = (EditText) findViewById(R.id.hp_field);
+        EditText acText = (EditText) findViewById(R.id.ac_field);
+        EditText spdText = (EditText) findViewById(R.id.spd_field);
+        EditText initText = (EditText) findViewById(R.id.init_field);
+        EditText strText = (EditText) findViewById(R.id.str_field);
+        EditText dexText = (EditText) findViewById(R.id.dex_field);
+        EditText conText = (EditText) findViewById(R.id.con_field);
+        EditText intText = (EditText) findViewById(R.id.int_field);
+        EditText wisText = (EditText) findViewById(R.id.wis_field);
+        EditText chaText = (EditText) findViewById(R.id.cha_field);
+
         nameText.setText(chac.name);
         typeText.setText(chac.race);
         classText.setText(chac.cclass);
+
+        levelText.setText(String.valueOf(chac.level));
+        hpText.setText(String.valueOf(chac.hp));
+        acText.setText(String.valueOf(chac.ac));
+        spdText.setText(String.valueOf(chac.spd));
+        initText.setText(String.valueOf(chac.init));
+        strText.setText(String.valueOf(chac.str));
+        dexText.setText(String.valueOf(chac.dex));
+        conText.setText(String.valueOf(chac.con));
+        intText.setText(String.valueOf(chac.inl));
+        wisText.setText(String.valueOf(chac.wis));
+        chaText.setText(String.valueOf(chac.cha));
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -187,17 +211,17 @@ public class MyActivity extends AppCompatActivity {
                         String name_message = nameText.getText().toString();
                         String type_message = typeText.getText().toString();
                         String class_message = classText.getText().toString();
-                        int levelNum = Integer.getInteger(levelText.getText().toString());
-                        int hpNum = Integer.getInteger(hpText.getText().toString());
-                        int acNum = Integer.getInteger(acText.getText().toString());
-                        int spdNum = Integer.getInteger(spdText.getText().toString());
-                        int initNum = Integer.getInteger(initText.getText().toString());
-                        int strNum = Integer.getInteger(strText.getText().toString());
-                        int dexNum = Integer.getInteger(dexText.getText().toString());
-                        int conNum = Integer.getInteger(conText.getText().toString());
-                        int intNum = Integer.getInteger(intText.getText().toString());
-                        int wisNum = Integer.getInteger(wisText.getText().toString());
-                        int chaNum = Integer.getInteger(chaText.getText().toString());
+                        int levelNum = Integer.parseInt(levelText.getText().toString());
+                        int hpNum = Integer.parseInt(hpText.getText().toString());
+                        int acNum = Integer.parseInt(acText.getText().toString());
+                        int spdNum = Integer.parseInt(spdText.getText().toString());
+                        int initNum = Integer.parseInt(initText.getText().toString());
+                        int strNum = Integer.parseInt(strText.getText().toString());
+                        int dexNum = Integer.parseInt(dexText.getText().toString());
+                        int conNum = Integer.parseInt(conText.getText().toString());
+                        int intNum = Integer.parseInt(intText.getText().toString());
+                        int wisNum = Integer.parseInt(wisText.getText().toString());
+                        int chaNum = Integer.parseInt(chaText.getText().toString());
 
                         chac.cclass = class_message;
                         chac.name = name_message;
