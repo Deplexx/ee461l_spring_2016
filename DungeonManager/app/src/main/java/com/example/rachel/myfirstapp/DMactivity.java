@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.support.v4.view.GravityCompat;
+import android.view.View;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -23,6 +24,7 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
+    public boolean charSheetMade = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -188,4 +190,5 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 }
