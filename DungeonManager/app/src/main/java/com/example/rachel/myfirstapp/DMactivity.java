@@ -24,7 +24,6 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
-    public boolean charSheetMade = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
