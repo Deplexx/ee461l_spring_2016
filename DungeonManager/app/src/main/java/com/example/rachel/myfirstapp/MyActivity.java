@@ -53,6 +53,7 @@ public class MyActivity extends AppCompatActivity {
     //floating action button to show logger
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            //TODO: make it switch to the logger fragmnet please
             @Override
             public void onClick(View view) { //switch to viewing logger!
                 Intent intent = new Intent(MyActivity.this, CharacterSheet.class);
