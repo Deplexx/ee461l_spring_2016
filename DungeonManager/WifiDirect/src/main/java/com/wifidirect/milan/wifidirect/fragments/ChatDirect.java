@@ -120,8 +120,6 @@ public class ChatDirect extends Fragment implements MessageListener {
                 mAdapter.addMessage(messageDecode[3], false);
             }
         });
-
-        Toast.makeText(getActivity(), "Message Received", Toast.LENGTH_SHORT);
     }
 
 

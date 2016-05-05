@@ -22,11 +22,47 @@
     <string name="submit_fields_dialog_message">Your character attributes will be saved and\n
                                                 you will only be able to edit them with\n
                                                 the DM\'s permission.</string>
-    <string name="title_activity_picker">Select Mode</string>
+    <string name="title_activity_picker">Status Choice</string>
     <string name="DM_button">Dungeon Master</string>
     <string name="Player_button">Player</string>
+    <string name="title_activity_dmactivity">DMactivity</string>
+    <string name="title_activity_text_fragment">TextFragment</string>
 
-    <string name="dm_activity">DM Activity</string>
-    <string name="title_activity_user">UserActivity</string>
+    <string-array name="Char_Stats">
+        <item>Name</item>
+        <item>Class</item>
+        <item>Race</item>
+        <item>Level</item>
+        <item>HP</item>
+        <item>Dexterity</item>
+        <item>Stength</item>
+    </string-array>
+
+    <string-array name="DM_Modify_Stats">
+        <item>HP</item>
+        <item>STR</item>
+        <item>DEX</item>
+        <item>CON</item>
+        <item>INT</item>
+        <item>WIS</item>
+        <item>CHA</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_con">Enter CON</string>
+    <string name="enter_dex">Enter DEX</string>
+    <string name="enter_str">Enter STR</string>
+    <string name="enter_int">Enter INT</string>
+    <string name="enter_wis">Enter WIS</string>
+    <string name="enter_cha">Enter CHA</string>
+    <string name="enter_spd">Enter SPD</string>
+    <string name="enter_ac">Enter AC</string>
+    <string name="enter_hp">Enter HP</string>
+    <string name="enter_level">Enter Level</string>
+    <string name="random_stats">Random Stats</string>
+    <string name="send_mod">Send Mod</string>
+    <string name="enter_players_name">Enter Players Name</string>
+    <string name="enter_effect">Enter Effect</string>
 
 </resources>

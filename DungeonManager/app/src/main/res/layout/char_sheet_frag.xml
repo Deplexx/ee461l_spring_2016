@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#cec1c2">
+
+        <TextView
+            android:id="@+id/title"
+            android:text="@string/Title"
+            android:textColor="#f3f3f7"
+            android:textSize="25sp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:typeface="serif"
+            android:fontFamily="sans-serif-thin"
+            android:layout_height="30dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/button_send"
+            android:onClick="submitFields"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal" />
+
+
+        <EditText
+            android:id="@+id/name_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_message" />
+
+        <EditText
+            android:id="@+id/type_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_message" />
+
+        <EditText
+            android:id="@+id/class_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/class_message" />
+
+        <EditText
+            android:id="@+id/level_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_level"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/hp_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_hp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/ac_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_ac"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/spd_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_spd"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/init_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter INIT"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/str_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_str"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/dex_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_dex" />
+
+        <EditText
+            android:id="@+id/con_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_con" />
+
+        <EditText
+            android:id="@+id/int_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_int" />
+
+        <EditText
+            android:id="@+id/wis_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_wis" />
+
+        <EditText
+            android:id="@+id/cha_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_cha" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random Stats"
+            android:id="@+id/Auto_Fill_Btn"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</ScrollView>

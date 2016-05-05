@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         mService = ((WifiDirectService.ServiceBinder) service).getService();
         isBind = true;
         if(getIntent().getBooleanExtra("DM", true)) {
-            createGroup();
             isDM = true;
             isPlayer = false;
         }
@@ -110,37 +109,9 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return super.onOptionsItemSelected(item);
     }
 
-    //create a group if the player is the dm
-    private void createGroup() {
-        mService.mManager.createGroup(mService.mChannel, new WifiP2pManager.ActionListener() {
-
-            @Override
-            public void onSuccess() {
-                Toast.makeText(MainActivity.this, "Group Created", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(int reason) {
-                Toast.makeText(MainActivity.this, "Group failed to Create", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        mService.mManager.removeGroup(mService.mChannel, new WifiP2pManager.ActionListener() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFailure(int reason) {
-
-            }
-        });
         // unbind service
         unbindService();
     }

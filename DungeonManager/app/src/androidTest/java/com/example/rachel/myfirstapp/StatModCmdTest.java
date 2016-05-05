@@ -17,72 +17,72 @@ public class StatModCmdTest extends TestCase {
         cs = new CharacterSheet();
         tst = new HpModCmd(DEFAULT_CHAR_NAME, 1);
         int p = cs.hp;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.hp - p);
 
         tst = new HpModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.hp;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.hp - p);
 
         tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.str;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.str - p);
 
         tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.str;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.str - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
+        tst = new DexModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.dex;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.dex - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
+        tst = new DexModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.dex;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.dex - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
+        tst = new ConModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.con;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.con - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
+        tst = new ConModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.con;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.con - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
+        tst = new WisModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.wis;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.wis - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
+        tst = new WisModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.wis;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.wis - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
+        tst = new IntModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.inl;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.inl - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
+        tst = new IntModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.inl;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.inl - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, 1);
+        tst = new ChaModCmd(DEFAULT_CHAR_NAME, 1);
         p = cs.cha;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(1, cs.cha - p);
 
-        tst = new StrModCmd(DEFAULT_CHAR_NAME, -1);
+        tst = new ChaModCmd(DEFAULT_CHAR_NAME, -1);
         p = cs.cha;
-        tst.execute(cs);
+        cs = tst.execute(cs);
         assertEquals(-1, cs.cha - p);
     }
 
