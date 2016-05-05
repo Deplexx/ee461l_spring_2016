@@ -159,7 +159,7 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
         client.connect();
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
-                "DMactivity Page", // TODO: Define a title for the content shown.
+                "DM Page", // TODO: Define a title for the content shown.
                 // TODO: If you have web page content that matches this app activity's content,
                 // make sure this auto-generated web page URL is correct.
                 // Otherwise, set the URL to null.
@@ -178,7 +178,7 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
-                "DMactivity Page", // TODO: Define a title for the content shown.
+                "DM Page", // TODO: Define a title for the content shown.
                 // TODO: If you have web page content that matches this app activity's content,
                 // make sure this auto-generated web page URL is correct.
                 // Otherwise, set the URL to null.

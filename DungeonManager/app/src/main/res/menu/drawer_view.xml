@@ -12,6 +12,6 @@
         <item
             android:id="@+id/nav_third_fragment"
             android:icon="@drawable/ic_three"
-            android:title="Display Message" />
+            android:title="Logger" />
     </group>
 </menu>
