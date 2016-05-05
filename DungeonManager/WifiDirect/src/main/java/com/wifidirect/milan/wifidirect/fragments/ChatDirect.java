@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
@@ -29,10 +30,9 @@ import com.wifidirect.milan.wifidirect.utils.MessageUtils;
  */
 public class ChatDirect extends Fragment implements MessageListener {
     private static final String TAG = "ChatDirect ";
-    RecyclerView mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
-    EditText mEditText = (EditText) getActivity().findViewById(R.id.edittextmessage);
+    RecyclerView mRecyclerView;
+    EditText mEditText;
     private ChatAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private String chatName;
 
 
@@ -46,10 +46,20 @@ public class ChatDirect extends Fragment implements MessageListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container
             , Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chat, null);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         // get name
         chatName = getArguments().getString("name");
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+        mEditText =  (EditText) getActivity().findViewById(R.id.edittextmessage);
 
         // action bar
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,7 +74,7 @@ public class ChatDirect extends Fragment implements MessageListener {
         WifiDirectApplication.getBus().register(this);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
@@ -77,28 +87,29 @@ public class ChatDirect extends Fragment implements MessageListener {
             MainActivity.mService.startMessageReceiver();
         }
 
-        return view;
+        ImageButton _send = (ImageButton) getView().findViewById(R.id.imagebuttonsend);
+
+        _send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get message from edittext
+                String message = mEditText.getText().toString();
+
+                // clear edit text
+                mEditText.setText("");
+
+                // add message to adapter
+                mAdapter.addMessage(message, true);
+
+                // create json object
+                String messageEncode = MessageUtils.createMessage(chatName, message
+                        , MessageUtils.TYPE_MESSAGE, message.length(), "text");
+
+                // send message
+                MainActivity.mService.sendMessage(messageEncode);
+            }
+        });
     }
-
-
-    public void sendMessage(View view) {
-        // get message from edittext
-        String message = mEditText.getText().toString();
-
-        // clear edit text
-        mEditText.setText("");
-
-        // add message to adapter
-        mAdapter.addMessage(message, true);
-
-        // create json object
-        String messageEncode = MessageUtils.createMessage(chatName, message
-                , MessageUtils.TYPE_MESSAGE, message.length(), "text");
-
-        // send message
-        MainActivity.mService.sendMessage(messageEncode);
-    }
-
 
     @Override
     public void onMessageReceived(final String response) {
@@ -109,6 +120,8 @@ public class ChatDirect extends Fragment implements MessageListener {
                 mAdapter.addMessage(messageDecode[3], false);
             }
         });
+
+        Toast.makeText(getActivity(), "Message Received", Toast.LENGTH_SHORT);
     }
 
 
@@ -174,9 +187,4 @@ public class ChatDirect extends Fragment implements MessageListener {
         }
 
     }
-
-
-
-
-
 }
