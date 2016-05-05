@@ -141,21 +141,7 @@ public class DevicesList extends Fragment implements MessageListener{
                 // clear list of devices and add new list
                 mDevicesList.clear();
                 //if the user is the DM, then only clients should be added to the devices list
-                if(((MainActivity) getActivity()).isDM()) {
-                    for (WifiP2pDevice p : MainActivity.mService.mDevicesList) {
-                        if (!p.isGroupOwner()) {
-                            mDevicesList.add(p);
-                        }
-                    }
-                }
-                else {
-                    for (WifiP2pDevice p : MainActivity.mService.mDevicesList) {
-                        if (p.isGroupOwner()) {
-                            mDevicesList.add(p);
-                        }
-                    }
-                }
-
+                mDevicesList.addAll(MainActivity.mService.mDevicesList);
                 // show or hide RelativeLayout
                 if(mDevicesList.size() > 0) {
                     mRelativeLayoutEmpty.setVisibility(View.GONE);
