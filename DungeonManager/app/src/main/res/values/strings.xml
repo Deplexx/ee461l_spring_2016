@@ -38,6 +38,16 @@
         <item>Stength</item>
     </string-array>
 
+    <string-array name="DM_Modify_Stats">
+        <item>HP</item>
+        <item>STR</item>
+        <item>DEX</item>
+        <item>CON</item>
+        <item>INT</item>
+        <item>WIS</item>
+        <item>CHA</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_con">Enter CON</string>
@@ -51,5 +61,8 @@
     <string name="enter_hp">Enter HP</string>
     <string name="enter_level">Enter Level</string>
     <string name="random_stats">Random Stats</string>
+    <string name="send_mod">Send Mod</string>
+    <string name="enter_players_name">Enter Players Name</string>
+    <string name="enter_effect">Enter Effect</string>
 
 </resources>

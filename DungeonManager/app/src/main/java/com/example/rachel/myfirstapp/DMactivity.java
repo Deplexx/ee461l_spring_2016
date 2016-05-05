@@ -94,9 +94,9 @@ public class DMactivity extends AppCompatActivity implements CharacterSheetFragm
             case R.id.nav_second_fragment:
                 fragmentClass = DMinitFragment.class;
                 break;
-//            case R.id.nav_third_fragment:
-//                fragmentClass = ThirdFragment.class;
-//                break;
+          case R.id.nav_third_fragment:
+                fragmentClass = Logger_Display.class;
+                break;
             default:
                 fragmentClass = DMinitFragment.class;
         }
