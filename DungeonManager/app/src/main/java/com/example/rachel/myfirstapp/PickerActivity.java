@@ -1,16 +1,15 @@
 package com.example.rachel.myfirstapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.wifidirect.milan.wifidirect.activities.MainActivity;
-
 
 public class PickerActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,6 @@ public class PickerActivity extends AppCompatActivity {
             }
         });
 
-
         final Button Pbutton = (Button) findViewById(R.id.buttonPlayer);
         assert Pbutton != null;
         Pbutton.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +32,11 @@ public class PickerActivity extends AppCompatActivity {
                 PlayerChoice(v);
             }
         });
+
     }
 
     public void DMChoice(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DMactivity.class);
         intent.putExtra("DM", true);
         startActivity(intent);
     }
@@ -47,4 +46,5 @@ public class PickerActivity extends AppCompatActivity {
         intent.putExtra("Player", true);
         startActivity(intent);
     }
+
 }
