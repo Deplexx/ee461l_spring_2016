@@ -50,17 +50,6 @@ public class MyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    //floating action button to show logger
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            //TODO: make it switch to the logger fragmnet please
-            @Override
-            public void onClick(View view) { //switch to viewing logger!
-                Intent intent = new Intent(MyActivity.this, Logger_Display.class);
-                startActivity(intent);
-            }
-        });
-
         //adds the action bar for navigation in the right hand corner
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
